@@ -45,7 +45,7 @@ def post():
     #Every post should include the username of the poster and text of the post. 
     username = session['user_data']['login']
     message = request.form['message']
-    data.append({'username':username,'message',message})
+    data.append({'username':username,'message':message})
     return render_template('home.html', past_posts=posts_to_html())
 
 def posts_to_html():
