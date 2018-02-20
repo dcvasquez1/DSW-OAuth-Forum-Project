@@ -28,10 +28,9 @@ github = oauth.remote_app(
 
 #use a JSON file to store the past posts.  A global list variable doesn't work when handling multiple requests coming in and being handled on different threads
 #Create and set a global variable for the name of your JSON file here.  The file will be created on Heroku, so you don't need to make it in GitHub
-with open('posts.json','r') as f:
+with open('posts.json','r+') as f:
     data = json.load(f)
     
-
 @app.context_processor
 def inject_logged_in():
     return {"logged_in":('github_token' in session)}
@@ -47,8 +46,15 @@ def post():
     username = session['user_data']['login']
     message = request.form['message']
     data.append({'username':username,'message',message})
-    return render_template('home.html', past_posts=convert_to_html())
+    return render_template('home.html', past_posts=posts_to_html())
 
+def posts_to_html():
+    table = Markup(<table> <tr> <th>Username</th> <th>Message</th>)
+    for i in data:
+        table.append("<tr> <td>" + i['username'] + "</td>")
+        table.append("<td>" + i['message'] + "</td>")
+    return table
+    
 #redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
 def login():   
@@ -80,11 +86,6 @@ def authorized():
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')
-
-def convert_to_html():
-    table = Markup(<table> <tr> <th>Username</th> <th>Message</th>)
-    for i in data:
     
-
 if __name__ == '__main__':
     app.run()
