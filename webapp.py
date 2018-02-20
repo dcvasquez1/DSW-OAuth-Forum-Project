@@ -50,7 +50,7 @@ def post():
         data.append({'username':username,'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
-        print("error loading json file")
+        return render_template('home.html', past_posts="<p>Error loading json file or username</p>")
 
 def posts_to_html():
     try:
@@ -62,7 +62,7 @@ def posts_to_html():
             table.append("<td>" + i['message'] + "</td>")
         return table
     except:
-        print("error processing json file")
+        return "<p>table failed to load</p>"
     
 #redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
