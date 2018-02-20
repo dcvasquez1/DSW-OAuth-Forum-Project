@@ -49,7 +49,7 @@ def post():
     return render_template('home.html', past_posts=posts_to_html())
 
 def posts_to_html():
-    table = Markup(<table> <tr> <th>Username</th> <th>Message</th>)
+    table = Markup("<table> <tr> <th>Username</th> <th>Message</th>")
     for i in data:
         table.append("<tr> <td>" + i['username'] + "</td>")
         table.append("<td>" + i['message'] + "</td>")
