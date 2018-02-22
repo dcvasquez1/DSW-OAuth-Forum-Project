@@ -29,6 +29,7 @@ github = oauth.remote_app(
 # use a JSON file to store the past posts.  A global list variable doesn't work when handling multiple requests coming in and being handled on different threads
 # Create and set a global variable for the name of your JSON file here.  The file will be created on Heroku, so you don't need to make it in GitHub
 
+jsonPosts = 'posts.json'
     
 @app.context_processor
 def inject_logged_in():
@@ -43,8 +44,8 @@ def post():
     # This function should add the new post to the JSON file of posts and then render home.html and display the posts.  
     # Every post should include the username of the poster and text of the post. 
     try:
-        with open('posts.json', 'r+') as f:
-            data = json.load(f)
+        with open('posts.json', 'r+') as postsFile:
+            data = json.load(postsFile)
         username = session['user_data']['login']
         message = request.form['message']
         data.append({'username':username, 'message':message})
@@ -54,8 +55,8 @@ def post():
 
 def posts_to_html():
     try:
-        with open('posts.json','r') as f:
-            data = json.load(f)
+        with open(jsonPosts, 'r') as postsFile:
+            data = json.load(postsFile)
         # tableString = "<table> <tr> <th>Username</th> <th>Message</th>"
         # for i in data:
         #    tableString += " <tr> <td>" + i['username'] + "</td>"
