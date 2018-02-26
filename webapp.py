@@ -31,7 +31,7 @@ github = oauth.remote_app(
 
 jsonPosts = 'posts.json'
 os.system("echo '[]' >" + jsonPosts)
-os.environ['OAUTHLIB_INSECURE_TRANSPORT]='1'
+os.environ['OAUTHLIB_INSECURE_TRANSPORT]=1
     
 @app.context_processor
 def inject_logged_in():
