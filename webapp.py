@@ -49,7 +49,7 @@ def post():
         username = session['user_data']['login']
         message = request.form['message']
         with open('posts.json', 'r+') as f:
-            f.append({'username':username, 'message':message})
+            json.dump({'username':username, 'message':message}, f)
             data = json.load(f)
         return render_template('home.html', past_posts=posts_to_html())
     except:
@@ -57,8 +57,8 @@ def post():
 
 def posts_to_html():
     try:
-        with open('posts.json', 'r') as postsFile:
-            data = json.load(postsFile)
+        with open('posts.json', 'r') as f:
+            data = json.load(f)
         tableString = "<table> <tr> <th> Username </th> <th> Message </th>"
         for i in data:
             tableString += " <tr> <td>" + i['username'] + "</td>"
