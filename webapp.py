@@ -49,7 +49,7 @@ def post():
         with open('posts.json', 'r+') as postsFile:
             data = json.load(postsFile)
         username = session['user_data']['login']
-        message = request.form['Post']
+        message = request.form['message']
         data.append({'username':username, 'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
