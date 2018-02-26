@@ -63,6 +63,7 @@ def posts_to_html():
         for i in data:
             tableString += " <tr> <td>" + i['username'] + "</td>"
             tableString += " <td>" + i['message'] + "</td>"
+        tableString += " </table>"
         table = Markup(tableString)
         return tableString
     except:
