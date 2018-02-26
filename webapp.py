@@ -59,12 +59,12 @@ def posts_to_html():
     try:
         with open('posts.json', 'r') as postsFile:
             data = json.load(postsFile)
-        # tableString = "<table> <tr> <th>Username</th> <th>Message</th>"
-        # for i in data:
-        #    tableString += " <tr> <td>" + i['username'] + "</td>"
-        #    tableString += " <td>" + i['message'] + "</td>"
-        # table = Markup(tableString)
-        return "working"
+        tableString = "<table> <tr> <th>Username</th> <th>Message</th>"
+        for i in data:
+            tableString += " <tr> <td>" + i['username'] + "</td>"
+            tableString += " <td>" + i['message'] + "</td>"
+        table = Markup(tableString)
+        return table
     except:
         return "<p>table failed to load</p>"
     
