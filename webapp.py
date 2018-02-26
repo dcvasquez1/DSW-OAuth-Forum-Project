@@ -48,8 +48,9 @@ def post():
     try:
         username = session['user_data']['login']
         message = request.form['message']
-        with open('posts.json', 'w') as f:
-            json.dump({'username':username, 'message':message}, f)
+        with open('posts.json', 'r+') as f:
+            data = json.load(f)
+            data.append({'username':username, 'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="Error loading json file or username")
