@@ -46,11 +46,11 @@ def post():
     # This function should add the new post to the JSON file of posts and then render home.html and display the posts.  
     # Every post should include the username of the poster and text of the post. 
     try:
-        with open('posts.json', 'r+') as postsFile:
-            data = json.load(postsFile)
-        username = "dcv" #session['user_data']['login']
-        message = "message received" #request.form['message']
-        data.append({'username':username, 'message':message})
+        username = session['user_data']['login']
+        message = request.form['message']
+        with open('posts.json', 'r+') as f:
+            f.append({'username':username, 'message':message})
+            data = json.load(f)
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="<p>Error loading json file or username</p>")
