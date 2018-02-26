@@ -65,7 +65,7 @@ def posts_to_html():
             tableString += " <td>" + i['message'] + "</td>"
         tableString += " </table>"
         table = Markup(tableString)
-        return tableString
+        return table
     except:
         return "<p>table failed to load</p>"
     
