@@ -50,7 +50,7 @@ def post():
             data = json.load(postsFile)
         username = session['user_data']['login']
         message = request.form['message']
-        data.append({'username':username, 'message':message})
+        data.append({'username':username, 'message':Post})
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="<p>Error loading json file or username</p>")
