@@ -58,8 +58,7 @@ def post():
 
 def posts_to_html():
     try:
-        data = []
-        with open('posts.json', 'r') as f:
+        with open('posts.json', 'r+') as f:
             data = json.load(f)
         tableString = "<table> <tr> <th> Username </th> <th> Message </th>"
         for i in data:
