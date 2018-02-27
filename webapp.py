@@ -61,10 +61,10 @@ def posts_to_html():
         with open('posts.json', 'r') as f:
             data = json.load(f)
         tableString = "<table> <tr> <th> Username </th> <th> Message </th>"
-        for i in data:
-            tableString += " <tr> <td>" + "username_placeholder" """i['username']""" + "</td>"
-            tableString += " <td>" + "message_placeholder" """i['message']""" + "</td>"
-        tableString += " </table>"
+        #for i in data:
+        #    tableString += " <tr> <td>" + i['username'] + "</td>"
+        #    tableString += " <td>" + i['message'] + "</td>"
+        #tableString += " </table>"
         table = Markup(tableString)
         return table
     except:
