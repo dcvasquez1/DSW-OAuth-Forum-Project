@@ -2,10 +2,13 @@ body {
 
 }
 
+#content {
+     margin-left: 20px;
+}
+
 table { 
      border-spacing: 5px;
 }
-
-#content {
-     margin-left: 20px;
+th, td { 
+     padding: 10px;
 }
