@@ -53,6 +53,8 @@ def post():
         with open('posts.json', 'r+') as jsonPosts:
             data = json.load(jsonPosts)
             data.append({'username':username, 'message':message})
+            jsonPosts.seek(0)
+            jsonPosts.truncate(0)
             json.dump(data, jsonPosts)
         return render_template('home.html', past_posts=posts_to_html())
     except:
