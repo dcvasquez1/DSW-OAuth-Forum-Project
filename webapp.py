@@ -48,8 +48,6 @@ def post():
     try:
         username = session['user_data']['login']
         message = request.form['message']
-        #with open('posts.json', 'w') as jsonPosts:
-        #    json.dump([], jsonPosts)
         with open('posts.json', 'r+') as jsonPosts:
             data = json.load(jsonPosts)
             data.append({'username':username, 'message':message})
@@ -58,7 +56,7 @@ def post():
             json.dump(data, jsonPosts)
         return render_template('home.html', past_posts=posts_to_html())
     except:
-        return render_template('home.html', past_posts="Error loading json file or username")
+        return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
 def posts_to_html():
     try:
@@ -72,7 +70,7 @@ def posts_to_html():
         table = Markup(tableString)
         return table
     except:
-        return "table failed to load"
+        return "ERROR 002: table construction failed"
     
 # redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
