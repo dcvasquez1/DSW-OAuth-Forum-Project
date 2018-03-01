@@ -1,4 +1,4 @@
-table#postsTable th, td {
+table#postsTable th, td, tr {
     padding-right: 5px;
     padding-left:5px;
     padding-top:3px;
