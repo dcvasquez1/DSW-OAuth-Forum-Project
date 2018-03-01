@@ -5,10 +5,3 @@ body {
 #content {
      margin-left: 20px;
 }
-
-table { 
-     border-collapse: collapse;
-}
-th, td { 
-     padding: 10px;
-}
