@@ -5,6 +5,12 @@ from flask import render_template
 import pprint
 import os
 import json
+import pymongo
+from pymongo import MongoClient
+
+client = MongoClient("ds213239.mlab.com:13239")
+db = client["forumapp"]
+posts = db.posts
 
 app = Flask(__name__)
 
@@ -29,9 +35,10 @@ github = oauth.remote_app(
 # use a JSON file to store the past posts.  A global list variable doesn't work when handling multiple requests coming in and being handled on different threads
 # Create and set a global variable for the name of your JSON file here.  The file will be created on Heroku, so you don't need to make it in GitHub
 
-jsonPosts = 'posts.json'
-os.system("echo '[]' >" + jsonPosts)
-os.environ['OAUTHLIB_INSECURE_TRANSPORT']='1'
+# jsonPosts = 'posts.json'
+# os.system("echo '[]' >" + json
+)
+# os.environ['OAUTHLIB_INSECURE_TRANSPORT']='1'
     
 @app.context_processor
 def inject_logged_in():
@@ -48,22 +55,25 @@ def post():
     try:
         username = session['user_data']['login']
         message = request.form['message']
-        with open('posts.json', 'r+') as jsonPosts:
-            data = json.load(jsonPosts)
-            data.append({'username':username, 'message':message})
-            jsonPosts.seek(0)
-            jsonPosts.truncate(0)
-            json.dump(data, jsonPosts)
+        
+        #with open('posts.json', 'r+') as jsonPosts:
+        #    data = json.load(jsonPosts)
+        #    data.append({'username':username, 'message':message})
+        #    jsonPosts.seek(0)
+        #    jsonPosts.truncate(0)
+        #    json.dump(data, jsonPosts)
+        
+        posts.insert_one({'username':username, 'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
 def posts_to_html():
     try:
-        with open('posts.json', 'r') as jsonPosts:
-            data = json.load(jsonPosts)
+        #with open('posts.json', 'r') as jsonPosts:
+        #    data = json.load(jsonPosts)
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
-        for i in data:
+        for i in db.posts:
             tableString += " <tr> <td>" + i['username'] + ": </td>"
             tableString += " <td>" + i['message'] + "</td> </tr>"
         tableString += " </table>"
