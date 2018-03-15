@@ -6,3 +6,4 @@ Werkzeug
 wheel
 gunicorn
 Flask-OAuthlib
+pymongo
