@@ -60,8 +60,8 @@ def post():
         
         client = MongoClient("ds213239.mlab.com:13239")
         db = client["forumapp"]
-        posts = db.posts
-        posts.insert_one({'username':username, 'message':message})
+        colection = db["posts"]
+        collection.insert_one({'username':username, 'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="ERROR 001: problem adding new post")
@@ -73,8 +73,9 @@ def posts_to_html():
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
         client = MongoClient("ds213239.mlab.com:13239")
         db = client["forumapp"]
+        collection = db["posts"]
         posts = db.posts
-        for i in posts:
+        for i in collection.find():
             tableString += " <tr> <td>" + i['username'] + ": </td>"
             tableString += " <td>" + i['message'] + "</td> </tr>"
         tableString += " </table>"
