@@ -32,8 +32,7 @@ github = oauth.remote_app(
 # Create and set a global variable for the name of your JSON file here.  The file will be created on Heroku, so you don't need to make it in GitHub
 
 # jsonPosts = 'posts.json'
-# os.system("echo '[]' >" + json
-)
+# os.system("echo '[]' >" + json)
 # os.environ['OAUTHLIB_INSECURE_TRANSPORT']='1'
     
 @app.context_processor
