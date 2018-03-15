@@ -74,9 +74,9 @@ def posts_to_html():
         client = MongoClient("ds213239.mlab.com:13239")
         db = client["forumapp"]
         posts = db.posts
-        #for i in db.posts:
-        #    tableString += " <tr> <td>" + i['username'] + ": </td>"
-        #    tableString += " <td>" + i['message'] + "</td> </tr>"
+        for i in posts:
+            tableString += " <tr> <td>" + i['username'] + ": </td>"
+            tableString += " <td>" + i['message'] + "</td> </tr>"
         tableString += " </table>"
         table = Markup(tableString)
         return table
