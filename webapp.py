@@ -62,7 +62,7 @@ def post():
         db = client["forumapp"]
         colection = db["posts"]
         collection.insert_one({'username':username, 'message':message})
-        return render_template('home.html', past_posts=posts_to_html())
+        return render_template('home.html', past_posts='bypassing posts_to_html()')
     except:
         return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
