@@ -58,7 +58,7 @@ def post():
         #    jsonPosts.truncate(0)
         #    json.dump(data, jsonPosts)
         
-        client = MongoClient("mongodb://localhost:27017")
+        client = MongoClient()
         db = client["forumapp"]
         posts = db.posts
         posts.insert_one({ 'username':username, 'message':message })
@@ -71,7 +71,7 @@ def posts_to_html():
         #with open('posts.json', 'r') as jsonPosts:
         #    data = json.load(jsonPosts)
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
-        client = MongoClient("mongodb://localhost:27017")
+        client = MongoClient()
         db = client["forumapp"]
         collection = db["posts"]
         posts = db.posts
