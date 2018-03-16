@@ -60,7 +60,7 @@ def post():
         
         client = MongoClient("ds213239.mlab.com:13239")
         db = client["forumapp"]
-        posts = db["posts"]
+        posts = db.posts
         posts.insert_one({'username':username, 'message':message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
