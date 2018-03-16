@@ -61,7 +61,7 @@ def post():
         client = MongoClient("mongodb://localhost:27017")
         db = client["forumapp"]
         posts = db.posts
-        posts.insert_one({ 'username':username }) #, 'message':message})
+        posts.insert_one({ 'username':username, 'message':message })
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="ERROR 001: problem adding new post")
