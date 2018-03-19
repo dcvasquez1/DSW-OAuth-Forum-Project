@@ -8,10 +8,6 @@ import json
 import pymongo
 from pymongo import MongoClient
 
-client = MongoClient()
-db = client["forumapp"]
-posts = db.posts
-
 app = Flask(__name__)
 
 app.debug = True # Change this to False for production
@@ -55,6 +51,10 @@ def post():
         username = session['user_data']['login']
         message = request.form['message']
         
+        client = MongoClient()
+        db = client["forumapp"]
+        posts = db.posts
+        
         #with open('posts.json', 'r+') as jsonPosts:
         #    data = json.load(jsonPosts)
         #    data.append({'username':username, 'message':message})
@@ -71,6 +71,11 @@ def posts_to_html():
     try:
         #with open('posts.json', 'r') as jsonPosts:
         #    data = json.load(jsonPosts)
+        
+        client = MongoClient()
+        db = client["forumapp"]
+        posts = db.posts
+        
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
         #client = MongoClient()
         #db = client["forumapp"]
