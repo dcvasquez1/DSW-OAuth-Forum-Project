@@ -45,25 +45,29 @@ def home():
 
 @app.route('/posted', methods=['POST'])
 def post():
-    # This function should add the new post to the JSON file of posts and then render home.html and display the posts.  
-    # Every post should include the username of the poster and text of the post. 
+    # This function should add the new post to the
+    #   JSON file of posts and then render home.html
+    #   and display the posts.
+    # Every post should include the
+    #   username of the poster and text of the post.
+
     try:
         username = session['user_data']['login']
         message = request.form['message']
-        
+
         client = MongoClient("ds213239.mlab.com:13239")
         db = client["forumapp"]
         posts = db["posts"]
-        
-        #       **OLD JSON CODE**
-        #with open('posts.json', 'r+') as jsonPosts:
-        #    data = json.load(jsonPosts)
-        #    data.append({'username':username, 'message':message})
-        #    jsonPosts.seek(0)
-        #    jsonPosts.truncate(0)
-        #    json.dump(data, jsonPosts)
-        
-        posts.insert_one({ 'username':username, 'message':message })
+
+#               **OLD JSON CODE**
+#       with open('posts.json', 'r+') as jsonPosts:
+#            data = json.load(jsonPosts)
+#            data.append({'username':username, 'message':message})
+#            jsonPosts.seek(0)
+#            jsonPosts.truncate(0)
+#            json.dump(data, jsonPosts)
+
+        posts.insert_one({'username': username, 'message': message})
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="ERROR 001: problem adding new post")
