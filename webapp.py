@@ -55,6 +55,7 @@ def post():
         db = client["forumapp"]
         posts = db.posts
         
+        #       **OLD JSON CODE**
         #with open('posts.json', 'r+') as jsonPosts:
         #    data = json.load(jsonPosts)
         #    data.append({'username':username, 'message':message})
@@ -69,18 +70,15 @@ def post():
 
 def posts_to_html():
     try:
+        #       **OLD JSON CODE**
         #with open('posts.json', 'r') as jsonPosts:
         #    data = json.load(jsonPosts)
         
+        tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
         client = MongoClient()
         db = client["forumapp"]
+        collection = db["posts"]
         posts = db.posts
-        
-        tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
-        #client = MongoClient()
-        #db = client["forumapp"]
-        #collection = db["posts"]
-        #posts = db.posts
         #for i in collection.find():
         #    tableString += " <tr> <td>" + i['username'] + ": </td>"
         #    tableString += " <td>" + i['message'] + "</td> </tr>"
