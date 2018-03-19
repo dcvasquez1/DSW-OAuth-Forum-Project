@@ -55,7 +55,7 @@ def post():
         username = session['user_data']['login']
         message = request.form['message']
 
-        client = MongoClient()
+        client = MongoClient("mongodb://localhost:27017")
         db = client["forumapp"]
         posts = db["posts"]
 
@@ -79,7 +79,7 @@ def posts_to_html():
         #    data = json.load(jsonPosts)
         
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
-        client = MongoClient()
+        client = MongoClient("mongodb://localhost:27017")
         db = client["forumapp"]
         collection = db["posts"]
         posts = db["posts"]
