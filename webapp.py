@@ -53,7 +53,7 @@ def post():
         
         client = MongoClient()
         db = client["forumapp"]
-        posts = db.posts
+        posts = db["posts"]
         
         #       **OLD JSON CODE**
         #with open('posts.json', 'r+') as jsonPosts:
@@ -78,7 +78,7 @@ def posts_to_html():
         client = MongoClient()
         db = client["forumapp"]
         collection = db["posts"]
-        posts = db.posts
+        posts = db["posts"]
         #for i in collection.find():
         #    tableString += " <tr> <td>" + i['username'] + ": </td>"
         #    tableString += " <td>" + i['message'] + "</td> </tr>"
