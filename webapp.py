@@ -51,7 +51,7 @@ def post():
     # Every post should include the
     #   username of the poster and text of the post.
 
-    try:
+    # try:
         username = session['user_data']['login']
         message = request.form['message']
 
@@ -69,8 +69,8 @@ def post():
 
         # posts.insert_one({'username': username, 'message': message})
         return render_template('home.html', past_posts=posts_to_html())
-    except:
-        return render_template('home.html', past_posts="ERROR 001: problem adding new post")
+    # except:
+    #     return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
 def posts_to_html():
     try:
