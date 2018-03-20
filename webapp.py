@@ -57,12 +57,6 @@ def post():
 
     client = pymongo.MongoClient("ds213239.mlab.com:13239")
     db = client["forumapp"]
-    use admin
-    db.createUser({
-        user: "administrator",
-        pwd: "password",
-        roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
-    })
     posts = db["posts"]
 
 #               **OLD JSON CODE**
