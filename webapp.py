@@ -52,12 +52,12 @@ def post():
     #   username of the poster and text of the post.
 
     # try:
-        username = session['user_data']['login']
-        message = request.form['message']
+    username = session['user_data']['login']
+    message = request.form['message']
 
-        client = pymongo.MongoClient("ds213239.mlab.com:13239")
-        db = client["forumapp"]
-        posts = db["posts"]
+    client = pymongo.MongoClient("ds213239.mlab.com:13239")
+    db = client["forumapp"]
+    posts = db["posts"]
 
 #               **OLD JSON CODE**
 #       with open('posts.json', 'r+') as jsonPosts:
@@ -67,8 +67,8 @@ def post():
 #            jsonPosts.truncate(0)
 #            json.dump(data, jsonPosts)
 
-        # posts.insert_one({'username': username, 'message': message})
-        return render_template('home.html', past_posts=posts_to_html())
+    posts.insert_one({'username': username, 'message': message})
+    return render_template('home.html', past_posts=posts_to_html())
     # except:
     #     return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
