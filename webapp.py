@@ -11,18 +11,6 @@ from pymongo import MongoClient
 client = pymongo.MongoClient("ds213239.mlab.com:13239")
 db = client["forumapp"]
 posts = db["posts"]
-config = {
-  URI: 'ds213239.mlab.com:13239/forumapp',
-  OPTIONS: {
-    user: 'test_user',
-    pass: '18s9h64735f124g5e68',
-    auth: {
-      authdb: 'forumapp'
-    }
-  }
-}
-
-# db.init(config.URI, config.OPTIONS)
 
 app = Flask(__name__)
 
