@@ -88,13 +88,21 @@ def posts_to_html():
         for i in posts.find():
             tableString += " <tr> <td>" + i['username'] + ": </td>"
             tableString += " <td>" + i['message'] + "</td>"
-            tableString += ' <td> <form action = "/delete" method = "post"> <button type="submit" name="delete" value="docid">Delete</button></form> </td>'
+            tableString += ' <td> <form action = "/delete" method = "post"> <button type="submit" name="delete" value=' + i.get('_id') + '>Delete</button></form> </td>'
             tableString += ' </tr> '
         tableString += " </table>"
         table = Markup(tableString)
         return table
     except:
         return "ERROR 002: table construction failed"
+
+@app.route('/delete', methods=['POST'])
+def delete_post():
+    try:
+        deleteID = request.form.get
+    except:
+        return "ERROR 003: problem deleting post"
+    
     
 # redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
