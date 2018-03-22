@@ -83,7 +83,8 @@ def posts_to_html():
         client = pymongo.MongoClient("mongodb://test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239/forumapp")
         db = client["forumapp"]
         posts = db["posts"]
-        for i in collection.find():
+        
+        for i in posts.find():
             tableString += " <tr> <td>" + i['username'] + ": </td>"
             tableString += " <td>" + i['message'] + "</td> </tr>"
         tableString += " </table>"
