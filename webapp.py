@@ -51,13 +51,13 @@ def post():
     # Every post should include the
     #   username of the poster and text of the post.
 
-    # try:
-    username = session['user_data']['login']
-    message = request.form['message']
+    try:
+        username = session['user_data']['login']
+        message = request.form['message']
 
-    client = pymongo.MongoClient("mongodb://test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239/forumapp")
-    db = client["forumapp"]
-    posts = db["posts"]
+        client = pymongo.MongoClient("mongodb://test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239/forumapp")
+        db = client["forumapp"]
+        posts = db["posts"]
 
 
 #               **OLD JSON CODE**
@@ -68,10 +68,10 @@ def post():
 #            jsonPosts.truncate(0)
 #            json.dump(data, jsonPosts)
 
-    posts.insert_one({'username': username, 'message': message})
-    return render_template('home.html', past_posts=posts_to_html())
-    # except:
-    #     return render_template('home.html', past_posts="ERROR 001: problem adding new post")
+        posts.insert_one({'username': username, 'message': message})
+        return render_template('home.html', past_posts=posts_to_html())
+    except:
+        return render_template('home.html', past_posts="ERROR 001: problem adding new post")
 
 def posts_to_html():
     try:
@@ -82,11 +82,10 @@ def posts_to_html():
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
         client = pymongo.MongoClient("mongodb://test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239/forumapp")
         db = client["forumapp"]
-        # collection = db["posts"]
         posts = db["posts"]
-        #for i in collection.find():
-        #    tableString += " <tr> <td>" + i['username'] + ": </td>"
-        #    tableString += " <td>" + i['message'] + "</td> </tr>"
+        for i in collection.find():
+            tableString += " <tr> <td>" + i['username'] + ": </td>"
+            tableString += " <td>" + i['message'] + "</td> </tr>"
         tableString += " </table>"
         table = Markup(tableString)
         return table
