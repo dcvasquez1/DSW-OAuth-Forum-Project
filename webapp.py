@@ -8,7 +8,7 @@ import json
 import pymongo
 from pymongo import MongoClient
 
-client = pymongo.MongoClient("ds213239.mlab.com:13239")
+client = pymongo.MongoClient("test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239")
 db = client["forumapp"]
 posts = db["posts"]
 
@@ -81,7 +81,7 @@ def posts_to_html():
         #    data = json.load(jsonPosts)
         
         tableString = '<table id="postsTable" cellpadding="5"> <tr> <th> Username </th> <th> Message </th> </tr>'
-        # client = pymongo.MongoClient("ds213239.mlab.com:13239")
+        # client = pymongo.MongoClient("test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239")
         # db = client["forumapp"]
         # collection = db["posts"]
         # posts = db["posts"]
