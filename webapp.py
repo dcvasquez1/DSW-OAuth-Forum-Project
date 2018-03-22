@@ -23,7 +23,7 @@ var config = {
   }
 }
 
-db.init(config.URI, config.OPTIONS)
+# db.init(config.URI, config.OPTIONS)
 
 app = Flask(__name__)
 
