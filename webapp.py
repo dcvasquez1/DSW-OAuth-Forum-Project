@@ -86,7 +86,8 @@ def posts_to_html():
         
         for i in posts.find():
             tableString += " <tr> <td>" + i['username'] + ": </td>"
-            tableString += " <td>" + i['message'] + "</td> </tr>"
+            tableString += " <td>" + i['message'] + "</td>"
+            tableString += ' <form action = "/delete" method = "post"> <button type="submit" name="delete" value="docid">Delete</button></form> </tr>1'
         tableString += " </table>"
         table = Markup(tableString)
         return table
