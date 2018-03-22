@@ -8,6 +8,23 @@ import json
 import pymongo
 from pymongo import MongoClient
 
+client = pymongo.MongoClient("ds213239.mlab.com:13239")
+db = client["forumapp"]
+posts = db["posts"]
+
+var config = {
+  URI: 'ds213239.mlab.com:13239/forumapp',
+  OPTIONS: {
+    user: 'test_user',
+    pass: '18s9h64735f124g5e68',
+    auth: {
+      authdb: 'forumapp'
+    }
+  }
+}
+
+db.init(config.URI, config.OPTIONS)
+
 app = Flask(__name__)
 
 app.debug = True # Change this to False for production
@@ -55,9 +72,7 @@ def post():
     username = session['user_data']['login']
     message = request.form['message']
 
-    client = pymongo.MongoClient("ds213239.mlab.com:13239")
-    db = client["forumapp"]
-    posts = db["posts"]
+    
 
 #               **OLD JSON CODE**
 #       with open('posts.json', 'r+') as jsonPosts:
