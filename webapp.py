@@ -97,7 +97,7 @@ def posts_to_html():
         print(e)
         return e
 
-''' @app.route('/delete', methods=['POST'])
+@app.route('/delete', methods=['POST'])
 def delete_post():
     client = pymongo.MongoClient("mongodb://test_user:18s9h64735f124g5e68@ds213239.mlab.com:13239/forumapp")
     db = client["forumapp"]
@@ -108,7 +108,6 @@ def delete_post():
         return render_template('home.html', past_posts=posts_to_html())
     except:
         return render_template('home.html', past_posts="ERROR 003: problem deleting post")
-  '''  
     
 # redirect to GitHub's OAuth page and confirm callback URL
 @app.route('/login')
