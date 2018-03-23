@@ -7,7 +7,7 @@ import pprint
 import os
 import json
 import pymongo
-from pymongo import MongoClient
+# from pymongo import MongoClient
 
 app = Flask(__name__)
 
