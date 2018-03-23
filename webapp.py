@@ -93,8 +93,9 @@ def posts_to_html():
         tableString += " </table>"
         table = Markup(tableString)
         return table
-    except:
-        return "ERROR 002: table construction failed"
+    except Exception as e:
+        print(e)
+        return e
 
 ''' @app.route('/delete', methods=['POST'])
 def delete_post():
