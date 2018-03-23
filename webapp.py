@@ -106,7 +106,7 @@ def delete_post():
         db.posts.remove( {"_id": ObjectId(deleteID)})
         return render_template('home.html', past_posts=posts_to_html())
     except:
-        return return render_template('home.html', past_posts="ERROR 003: problem deleting post")
+        return render_template('home.html', past_posts="ERROR 003: problem deleting post")
     
     
 # redirect to GitHub's OAuth page and confirm callback URL
