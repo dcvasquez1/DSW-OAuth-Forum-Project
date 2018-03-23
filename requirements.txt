@@ -7,4 +7,3 @@ wheel
 gunicorn
 Flask-OAuthlib
 Flask-PyMongo
-bson
