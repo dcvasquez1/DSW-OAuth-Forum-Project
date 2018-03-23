@@ -6,5 +6,5 @@ Werkzeug
 wheel
 gunicorn
 Flask-OAuthlib
-pymongo
+Flask-PyMongo
 bson
